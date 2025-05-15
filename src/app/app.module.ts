@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 //Instalar ngx-translate/core y ngx-translate/http-loader
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -24,7 +24,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     TranslateModule.forRoot({ // Configuración de ngx-translate
       loader: {
-        provide: TranslateModule,
+        provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
