@@ -53,7 +53,7 @@ export class CategoriesPage {
           loading.dismiss();
         }
       });
-    }, 3000);
+    }, 1500);
 
   }
 

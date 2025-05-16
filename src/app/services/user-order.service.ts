@@ -44,6 +44,10 @@ export class UserOrderService {
     await this.saveOrder();
   }
 
+  getProducts(){
+    return this.order.products;
+  }
+
   async addProduct(product: Product) {
 
     const productFound = this.searchProduct(product);
