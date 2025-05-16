@@ -9,7 +9,19 @@
     </ion-title>
   </ion-header>
   <ion-content>
-    Awesome avocado content
+    <ion-list>
+      <ion-item>
+        <ion-icon slot="start" name="people-outline"></ion-icon>
+        <ion-label>{{ userOrderService.hasUser() ? 'label.logout': 'label.start.session' | translate }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="cart-outline"></ion-icon>
+        <ion-label>{{ 'label.see.order' | translate }}</ion-label>
+        <ion-badge slot="end">
+          {{ userOrderService.numProducts() }}
+        </ion-badge>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-menu>
 
