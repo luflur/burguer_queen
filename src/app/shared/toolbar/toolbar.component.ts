@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { EventType, Router, Routes, RoutesRecognized } from '@angular/router';
+import { IonicModule, NavController } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-toolbar',
@@ -12,8 +14,26 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class ToolbarComponent  implements OnInit {
 
-  constructor() { }
+  public showBack: boolean;
 
-  ngOnInit() {}
+  constructor(
+    private router: Router,
+    private navController: NavController
+   ) {
+    this.showBack = false;
+   }
 
+  ngOnInit() {
+    this.router.events.pipe(
+      filter((event) => event.type == EventType.RoutesRecognized)
+    ).subscribe({
+      next: (event: RoutesRecognized) => {
+        this.showBack = event.state.root.firstChild.data['showBack'];
+      }
+    })
+  }
+
+  goBack() {
+    this.navController.back();
+  }
 }
