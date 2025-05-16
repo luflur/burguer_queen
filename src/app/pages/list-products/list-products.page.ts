@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-list-products',
@@ -8,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListProductsPage implements OnInit {
 
-  constructor() { }
+  private idCategory: string;
+
+  constructor(
+    private navParams: NavParams,
+    private navController: NavController,
+  ) {
+    console.log(this.navParams.data['idCategory']);
+    this.idCategory = this.navParams.data['idCategory'];
+   }
 
   ngOnInit() {
+    if(this.idCategory){
+
+    }else{
+      this.navController.navigateForward('categories');
+    }
   }
 
 }
