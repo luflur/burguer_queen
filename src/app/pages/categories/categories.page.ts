@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, NavController, NavParams } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category';
-import { GetCategories } from 'src/app/state/categories.actions';
-import { CategoriesState } from 'src/app/state/categories.state';
+import { GetCategories } from 'src/app/state/categories/categories.actions';
+import { CategoriesState } from 'src/app/state/categories/categories.state';
 
 @Component({
   selector: 'app-categories',
@@ -12,9 +13,13 @@ import { CategoriesState } from 'src/app/state/categories.state';
   styleUrls: ['./categories.page.scss'],
   standalone: false
 })
-export class CategoriesPage implements OnInit {
+export class CategoriesPage {
+
+  @Select(CategoriesState.categories)
+  private categories$: Observable<Category[]>;
 
   public categories: Category[];
+  private subscription: Subscription;
 
   constructor(
     private store: Store,
@@ -24,7 +29,8 @@ export class CategoriesPage implements OnInit {
     private navParams: NavParams,
   ) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
+    this.subscription = new Subscription();
     this.loadData();
   }
 
@@ -33,27 +39,35 @@ export class CategoriesPage implements OnInit {
       message: this.translate.instant('label.loading'),
     })
 
-    loading.present();
+    await loading.present();
 
     setTimeout(() => {
-      this.store.dispatch(new GetCategories()).subscribe({
+      this.store.dispatch(new GetCategories());
+      this.categories$.subscribe({
         next: () => {
           this.categories = this.store.selectSnapshot(CategoriesState.categories);
           console.log(this.categories);
           loading.dismiss();
         }, error: (err) => {
           console.error(err);
-        },
-        complete: () => {
           loading.dismiss();
         }
       });
-    }, 5000);
+    }, 3000);
 
   }
 
   goToProducts(category: Category) {
     this.navParams.data['idCategory'] = category._id;
     this.navController.navigateForward('list-products')
+  }
+
+  refreshCategories($event){
+    this.store.dispatch(new GetCategories());
+    $event.target.complete();
+  }
+
+  ionViewWillLeave() {
+    this.subscription.unsubscribe();
   }
 }

@@ -14,7 +14,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NgxsModule } from '@ngxs/store';
-import { CategoriesState } from './state/categories.state';
+import { CategoriesState } from './state/categories/categories.state';
+import { ProductsState } from './state/products/products.state';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json'); // Cargar archivos de traducción desde assets/i18n/
@@ -34,7 +35,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     NgxsModule.forRoot([
-      CategoriesState
+      CategoriesState,
+      ProductsState
     ]), // Configuración de NGXS
     ToolbarComponent,
     FooterComponent,

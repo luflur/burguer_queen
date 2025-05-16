@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Capacitor, CapacitorHttp, HttpResponse } from '@capacitor/core';
-import { Category } from '../models/category';
+import { Category } from '../../models/category';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
