@@ -1,28 +1,37 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { EventType, Router, Routes, RoutesRecognized } from '@angular/router';
-import { IonicModule, NavController } from '@ionic/angular';
-import { TranslateModule } from '@ngx-translate/core';
+import { IonicModule, MenuController, NavController } from '@ionic/angular';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs';
 import { UserOrderService } from 'src/app/services/user-order.service';
+import { LoginComponent } from "../login/login.component";
+import { Preferences } from '@capacitor/preferences';
+import { KEY_TOKEN } from 'src/app/constants/constants';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, TranslateModule]
+  imports: [IonicModule, CommonModule, TranslateModule, LoginComponent]
 })
 export class ToolbarComponent  implements OnInit {
 
   public showBack: boolean;
+  public showInfoUser: boolean;
 
   constructor(
     private router: Router,
     private navController: NavController,
-    public userOrderService: UserOrderService
+    public userOrderService: UserOrderService,
+    private menuController: MenuController,
+    private toastService: ToastService,
+    private translate: TranslateService,
    ) {
     this.showBack = false;
+    this.showInfoUser = false;
    }
 
   ngOnInit() {
@@ -38,4 +47,23 @@ export class ToolbarComponent  implements OnInit {
   goBack() {
     this.navController.back();
   }
+
+  back(){
+    this.showInfoUser = false;
+  }
+
+  async logout(){
+    await this.userOrderService.clear();
+    await Preferences.remove({ key: KEY_TOKEN});
+    this.navController.navigateForward('categories');
+    this.menuController.close('content');
+    this.toastService.showToast(
+      this.translate.instant('label.logout.success')
+    )
+  }
+
+  showPanelInfoUser() {
+    this.showInfoUser = true;
+  }
+
 }

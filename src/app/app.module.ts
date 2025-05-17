@@ -17,6 +17,9 @@ import { NgxsModule } from '@ngxs/store';
 import { CategoriesState } from './state/categories/categories.state';
 import { ProductsState } from './state/products/products.state';
 import { AuthState } from './state/auth/auth.state';
+import { LoginComponent } from './shared/login/login.component';
+import { User } from './models/user';
+import { UsersState } from './state/users/users.state';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json'); // Cargar archivos de traducción desde assets/i18n/
@@ -39,9 +42,11 @@ export function HttpLoaderFactory(http: HttpClient) {
       CategoriesState,
       ProductsState,
       AuthState,
+      UsersState,
     ]), // Configuración de NGXS
     ToolbarComponent,
     FooterComponent,
+    LoginComponent,
   ],
   providers: [
     { provide: RouteReuseStrategy,

@@ -5,6 +5,7 @@ import { KEY_ORDER } from '../constants/constants';
 import { QuantityProduct } from '../models/quantity-product';
 import { Product } from '../models/product';
 import { isEqual } from 'lodash-es';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -78,5 +79,11 @@ export class UserOrderService {
 
   hasUser(){
     return this.order && this.order.user;
+  }
+
+  async saveUser(user: User){
+    delete user.password;
+    this.order.user = user;
+    await this.saveOrder();
   }
 }
