@@ -21,6 +21,7 @@ import { LoginComponent } from './shared/login/login.component';
 import { User } from './models/user';
 import { UsersState } from './state/users/users.state';
 import { CreateAccountComponent } from './shared/create-account/create-account.component';
+import { ListProductOrderComponent } from './shared/list-product-order/list-product-order.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json'); // Cargar archivos de traducción desde assets/i18n/
@@ -49,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FooterComponent,
     LoginComponent,
     CreateAccountComponent,
+    ListProductOrderComponent,
   ],
   providers: [
     { provide: RouteReuseStrategy,

@@ -54,22 +54,9 @@ export class ProductPage {
   }
 
   calculateTotal(){
-    let total = this.product.price;
 
-    this.product.extras.forEach(extra => {
-      extra.blocks.forEach(block => {
-        if(block.options.length == 1 && block.options[0].activate){
-          total += block.options[0].price;
-        } else if(block.options.length > 1){
-          const option = block.options.find(op => op.activate);
-          if(option){
-            total += option.price;
-          }
-        }
-      })
-    })
+    this.total = this.userOrderService.priceProduct(this.product);
 
-    this.total = +total.toFixed(2);
   }
 
   getProduct($event){
