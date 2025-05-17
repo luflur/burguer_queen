@@ -9,18 +9,20 @@ import { LoginComponent } from "../login/login.component";
 import { Preferences } from '@capacitor/preferences';
 import { KEY_TOKEN } from 'src/app/constants/constants';
 import { ToastService } from 'src/app/services/toast.service';
+import { CreateAccountComponent } from "../create-account/create-account.component";
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, TranslateModule, LoginComponent]
+  imports: [IonicModule, CommonModule, TranslateModule, LoginComponent, CreateAccountComponent]
 })
 export class ToolbarComponent  implements OnInit {
 
   public showBack: boolean;
   public showInfoUser: boolean;
+  public showCreateAccount: boolean;
 
   constructor(
     private router: Router,
@@ -50,6 +52,15 @@ export class ToolbarComponent  implements OnInit {
 
   back(){
     this.showInfoUser = false;
+    this.showCreateAccount = false;
+  }
+
+  newAccount(){
+    this.showCreateAccount = true;
+  }
+
+  showLogin(){
+    this.showCreateAccount = false;
   }
 
   async logout(){
