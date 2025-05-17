@@ -148,4 +148,8 @@ export class UserOrderService {
     this.order.user = user;
     await this.saveOrder();
   }
+
+  getUser() {
+    return this.order.user;
+  }
 }
