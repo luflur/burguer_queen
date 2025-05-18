@@ -45,6 +45,10 @@ export class UserOrderService {
     await this.saveOrder();
   }
 
+  getOrder(){
+    return this.order
+  }
+
   getProducts() {
     return this.order.products;
   }

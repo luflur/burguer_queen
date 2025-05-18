@@ -60,7 +60,7 @@
             <ion-radio-group
             [value]="block.options[0].name"
             (ionChange)="changeMultipleOption($event, block.options)">
-              <ion-item lines="none" *ngFor="let option of block.options">
+              <ion-item lines="none" *ngFor="let option of block.options" class="ion-no-padding">
                 <ion-radio labelPlacement="start" [value]="option.name">
                   {{ (option.name | translate) + ' (+' + option.price + '$)' }}
 
