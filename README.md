@@ -57,13 +57,12 @@ docker-compose up --build
 ```bash
 ionic serve
 ```
-
-##Registro y autenticación
+## Registro y autenticación
 
 El usuario debe registrarse o iniciar sesión para crear y pagar órdenes.
 Los tokens de sesión se guardan localmente en @ionic/storage.
 
-##Capturas de Pantallas
+## Capturas de Pantallas
 ![Login](screenshots/login.png)
 ![Registro](screenshots/registro.png)
 ![Orden](screenshots/orden.png)
@@ -74,6 +73,6 @@ Los tokens de sesión se guardan localmente en @ionic/storage.
 ![Extras](screenshots/extras.png)
 ![Pago Exitoso](screenshots/pago_exitoso.png)
 
-##Creditos
+## Creditos
 Aprende Ionic de forma práctica
 Impartido por Disco Duro de Roer — Desarrollador, youtuber, streamer y profesor particular.
