@@ -36,23 +36,27 @@ Aplicación móvil desarrollada con **Ionic** y **Angular** que simula la experi
 
 ```bash
 git clone https://github.com/tu_usuario/restauranteApp.git
-cd restauranteApp ```
+cd restauranteApp
+```
 
 ### 2. Instalar dependencias del frontend
 
 ```bash
-npm install ```
+npm install
+```
 
 ### 3. Levantar el backend (Docker)
 
 ```bash
 cd backend
-docker-compose up --build ```
+docker-compose up --build
+```
 
 ### 4. Ejecutar la app
 
 ```bash
-ionic serve ```
+ionic serve
+```
 
 ##Registro y autenticación
 
