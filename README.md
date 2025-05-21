@@ -63,14 +63,17 @@ El usuario debe registrarse o iniciar sesión para crear y pagar órdenes.
 Los tokens de sesión se guardan localmente en @ionic/storage.
 
 ## Capturas de Pantallas
+![Categorias](screenshots/categorias.png)
+![Lista](screenshots/lista_productos.png)
+![Extras](screenshots/extras.png)
+![Menu](screenshots/menu.png)
 ![Login](screenshots/login.png)
 ![Registro](screenshots/registro.png)
 ![Orden](screenshots/orden.png)
 ![Pago Paso 1](screenshots/pago1.png)
 ![Pago Paso 2](screenshots/pago2.png)
 ![Pago Paso 3](screenshots/pago3.png)
-![Categorias](screenshots/categorias.png)
-![Extras](screenshots/extras.png)
+![Datos](screenshots/datos.png)
 ![Pago Exitoso](screenshots/pago_exitoso.png)
 
 ## Creditos
